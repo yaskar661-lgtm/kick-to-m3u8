@@ -71,6 +71,17 @@ def get_stream(username, force_refresh=False):
         print(f"Hata oluştu ({username}): {e}")
         return None
 
+@app.route('/')
+def home():
+    return {
+        "status": "online",
+        "message": "Kick Stream Proxy Servisi Çalışıyor!",
+        "usage": {
+            "stream": "/stream/<username>",
+            "refresh_cache": "/refresh/<username>"
+        }
+    }
+
 @app.route('/stream/<username>')
 def stream_redirect(username):
     username = username.lower().strip()
